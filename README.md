@@ -14,7 +14,7 @@ This backend is built using **FastAPI**, providing a **scalable**, **secure**, a
 
 ### 🗂️ ERD Diagram (Database Schema)
 
-- [🔍 Fitshot ERD - DrawSQL](https://drawsql.app/teams/fitshot/diagrams/fitshot-erd-schema)
+- [🔍 Fitshot ERD - DrawSQL](https://drawsql.app/teams/fitshot/diagrams/fitshot-erd-diagram)
 
 ---
 
