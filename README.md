@@ -70,4 +70,4 @@ fitshot-backend/
 
 ## 📄 License
 
-MIT © 2025 Fitshot Team
+Chaya Development LLC © 2025 Fitshot Team
