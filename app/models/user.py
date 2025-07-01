@@ -1,8 +1,10 @@
-# models/user.py
-
 from pydantic import BaseModel
+from typing import Optional
 
 class User(BaseModel):
-    id: str
+    uid: str
     name: str
     email: str
+    role: str
+    phone: Optional[str] = None
+    status: Optional[str] = "active"

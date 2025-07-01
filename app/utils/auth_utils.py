@@ -1,24 +1,13 @@
-from fastapi import Depends, HTTPException, status
-from fastapi.security import OAuth2PasswordBearer
-import jwt, os
+from fastapi import Header, HTTPException, Depends
+from app.services.auth_service import verify_firebase_token
+from app.schemas.auth_schema import TokenPayload
 
-SECRET_KEY = os.getenv("JWT_SECRET", "your-secret")
-ALGORITHM = "HS256"
+async def get_current_user(authorization: str = Header(...)) -> TokenPayload:
+    if not authorization.startswith("Bearer "):
+        raise HTTPException(status_code=401, detail="Invalid authorization header")
 
-oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/auth/login")
-
-async def get_current_user(token: str = Depends(oauth2_scheme)):
+    token = authorization.split(" ")[1]
     try:
-        payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
-        return {
-            "uid": payload.get("uid"),
-            "email": payload.get("email"),
-            "role": payload.get("role", "student"),
-            "name": payload.get("name", "User")
-        }
-    except jwt.PyJWTError:
-        raise HTTPException(
-            status_code=status.HTTP_401_UNAUTHORIZED,
-            detail="Could not validate credentials",
-            headers={"WWW-Authenticate": "Bearer"},
-        )
+        return await verify_firebase_token(token)
+    except Exception:
+        raise HTTPException(status_code=401, detail="Invalid or expired token")

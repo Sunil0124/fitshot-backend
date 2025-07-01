@@ -21,22 +21,53 @@ This backend is built using **FastAPI**, providing a **scalable**, **secure**, a
 ## 🚀 Features
 
 - 🧑‍🤝‍🧑 User Roles: Athlete, Trainer, Admin
-- 📆 Session Booking between Athletes and Trainers
-- 📝 Workout, Nutrition, and Progress Tracking (planned)
-- 🔐 JWT-based Authentication & Role Authorization
-- 🌐 RESTful API ready for mobile/web clients
+- 📆 Appointment Booking between Athletes and Trainers
+- 📝 Session Notes and Trainer Availability
+- 🔐 Firebase JWT-based Authentication & Role Authorization
+- 🔔 Notifications & Health Data Integration (planned)
+- 📊 RESTful API for both Mobile and Web Clients
 
 ---
 
 ## 🛠️ Tech Stack
 
 - **Framework**: FastAPI (Python)
-- **Database**: PostgreSQL / MySQL (via SQLAlchemy ORM)
-- **Auth**: JWT Authentication
-- **Containerization**: Docker
-- **Deployment**: (Planned) AWS / Railway / Vercel / Render
+- **Database**: Firestore (via Firebase Admin SDK)
+- **Auth**: Firebase JWT Authentication
+- **Hosting**: Google Cloud Platform (GCP)
+- **Docs**: OpenAPI/Swagger (`/docs`)
+- **Containerization**: Docker (Planned)
+- **CI/CD**: GitHub Actions (Planned)
 
 ---
 
 ## 📦 Project Structure
 
+```bash
+fitshot-backend/
+├── app/
+│   ├── main.py              # FastAPI entrypoint
+│   ├── config.py            # Configuration and env loading
+│   ├── routes/              # API route definitions
+│   ├── schemas/             # Pydantic models for request/response
+│   ├── services/            # Business logic and Firestore queries
+│   ├── models/              # Enum and type models
+│   ├── utils/               # Auth, Firebase init, helper functions
+│   └── db/collections.py    # Firestore collection references
+├── .env                     # Environment variables
+├── requirements.txt         # Python dependencies
+└── README.md
+```
+
+---
+
+## 📬 API Docs
+
+- Visit: [`http://localhost:8000/docs`](http://localhost:8000/docs)
+- Interactive Swagger UI for testing all endpoints
+
+---
+
+## 📄 License
+
+MIT © 2025 Fitshot Team

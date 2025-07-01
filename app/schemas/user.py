@@ -1,17 +1,13 @@
-from pydantic import BaseModel, EmailStr
+from pydantic import BaseModel
+from typing import Optional
 
-class UserOut(BaseModel):
+class UserBase(BaseModel):
     uid: str
     name: str
-    email: EmailStr
+    email: str
     role: str
+    phone: Optional[str] = None
+    status: Optional[str] = "active"
 
-
-# app/services/user_service.py
-from app.db.firestore import db
-
-async def get_user_by_id(uid: str):
-    doc = db.collection("users").document(uid).get()
-    if doc.exists:
-        return doc.to_dict()
-    return None
+class UserOut(UserBase):
+    pass

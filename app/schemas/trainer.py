@@ -1,9 +1,11 @@
 from pydantic import BaseModel
+from typing import Optional
 
-class TrainerCreate(BaseModel):
-    name: str
-    email: str
-    domain: str
+class TrainerBase(BaseModel):
+    user_id: str
+    expertise: str
+    bio: Optional[str] = None
+    available: bool = True
 
-class TrainerOut(TrainerCreate):
+class TrainerOut(TrainerBase):
     id: str
