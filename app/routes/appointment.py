@@ -6,6 +6,10 @@ from typing import List
 
 router = APIRouter()
 
+@router.get("/ping")
+def ping():
+    return {"message": "Appointment route is working"}
+
 @router.post("/", response_model=AppointmentOut)
 async def create_new_appointment(data: AppointmentCreate, current_user: dict = Depends(get_current_user)):
     return await create_appointment(current_user["uid"], data)
@@ -13,4 +17,5 @@ async def create_new_appointment(data: AppointmentCreate, current_user: dict = D
 @router.get("/me", response_model=List[AppointmentOut])
 async def fetch_my_appointments(current_user: dict = Depends(get_current_user)):
     return await get_appointments_for_user(current_user["uid"])
+
 

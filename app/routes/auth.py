@@ -14,6 +14,11 @@ from app.utils.auth_utils import get_current_user
 
 router = APIRouter()
 
+@router.get("/ping")
+def ping():
+    return {"message": "Auth route is working"}
+
 @router.get("/profile")
 async def get_user_profile(current_user: dict = Depends(get_current_user)):
     return {"message": "User profile fetched", "user": current_user}
+

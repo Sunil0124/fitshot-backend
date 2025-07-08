@@ -3,6 +3,11 @@ from app.utils.auth_utils import get_current_user
 
 router = APIRouter()
 
+@router.get("/ping")
+def ping():
+    return {"message": "Trainer route is working"}
+
 @router.get("/")
 async def list_trainers(current_user: dict = Depends(get_current_user)):
     return {"message": "List of trainers"}
+

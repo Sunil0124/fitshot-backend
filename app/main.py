@@ -20,3 +20,7 @@ app.add_middleware(
 
 # Mount all routes
 app.include_router(api_router)
+
+@app.get("/")
+def root():
+    return {"message": "Welcome to the Fitshot API"}
