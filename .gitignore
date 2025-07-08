@@ -1,0 +1,6 @@
+app/secrets/firebase-credentials.json
+venv/
+__pycache__/
+*.pyc
+.env
+app/secrets/firebase-credentials.json
