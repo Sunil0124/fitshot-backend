@@ -22,3 +22,12 @@ async def get_user(user_id: str):
     if not user:
         raise HTTPException(status_code=404, detail="User not found")
     return user 
+
+@router.get("/type/{email}")
+async def get_user_type(email: str):
+    if "trainer" in email:
+        return {"type": "trainer"}
+    elif "student" in email:
+        return {"type": "student"}
+    else:
+        return {"type": "unknown"}

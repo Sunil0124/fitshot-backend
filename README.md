@@ -1,7 +1,17 @@
 # 🏋️‍♂️ Fitshot Backend
 
-**Fitshot** is a modern fitness tracking platform designed to seamlessly connect **athletes**, **trainers**, and **admins** through a unified digital experience.  
-This backend is built using **FastAPI**, providing a **scalable**, **secure**, and **modular** API that powers both the **mobile** and **web** applications.
+**Fitshot** is an intelligent fitness and coaching platform that empowers **athletes**, **trainers**, and **organizations** to interact seamlessly through a unified digital experience.  
+This **FastAPI** backend is modular, secure, and optimized for scale — built to support both **mobile** and **web** clients.
+
+---
+
+## 🧠 Core Highlights
+
+- ✅ Firebase Firestore-backed multi-tenant database
+- 🔐 Firebase Authentication & JWT validation
+- 🏢 Organization + Theme customization API
+- 📆 Trainer scheduling & athlete appointment booking
+- ⚙️ Modular FastAPI architecture with Swagger documentation
 
 ---
 
@@ -9,35 +19,38 @@ This backend is built using **FastAPI**, providing a **scalable**, **secure**, a
 
 ### 🔗 UML Diagrams (Figma)
 
-- [📌 UML Diagram (Design File)](https://www.figma.com/design/o7grXz346zl7sIsAj0mFOh/Fitshot-UML-Diagrams?m=auto&t=T1rg7vqrFOAVz9ez-1)  
-- [🧩 UML Diagram (Board View)](https://www.figma.com/board/Qynqkyf4CcqQ5HAOwKcexQ/UML-Diagram?node-id=0-1&p=f&t=wlaZjXYzl3bSWSPp-0)
+- [📌 UML Design File](https://www.figma.com/design/o7grXz346zl7sIsAj0mFOh/Fitshot-UML-Diagrams?m=auto&t=T1rg7vqrFOAVz9ez-1)  
+- [🧩 UML Board View](https://www.figma.com/board/Qynqkyf4CcqQ5HAOwKcexQ/UML-Diagram?node-id=0-1&p=f&t=wlaZjXYzl3bSWSPp-0)
 
-### 🗂️ ERD Diagram (Database Schema)
+### 🗂️ ERD Diagram (DrawSQL)
 
-- [🔍 Fitshot ERD - DrawSQL](https://drawsql.app/teams/fitshot/diagrams/fitshot-erd-diagram)
+- [🔍 Fitshot ERD Schema](https://drawsql.app/teams/fitshot/diagrams/fitshot-erd-diagram)
 
 ---
 
 ## 🚀 Features
 
-- 🧑‍🤝‍🧑 User Roles: Athlete, Trainer, Admin
-- 📆 Appointment Booking between Athletes and Trainers
-- 📝 Session Notes and Trainer Availability
-- 🔐 Firebase JWT-based Authentication & Role Authorization
-- 🔔 Notifications & Health Data Integration (planned)
-- 📊 RESTful API for both Mobile and Web Clients
+- 🧑‍🤝‍🧑 **User Roles**: Athlete, Trainer, Admin (via Firebase Auth)
+- 🏢 **Organization Management**: Create orgs, update themes
+- 🎨 **Theme API**: Set custom branding colors per organization
+- 📆 **Appointment Booking**: Manage trainer slots & athlete sessions
+- 🔒 **Auth Middleware**: Firebase JWT decoding and role-based protection
+- 🧾 **Swagger Schema**: Pydantic models with built-in example schemas
+- 🔔 Notifications & Health Sync (planned)
 
 ---
 
 ## 🛠️ Tech Stack
 
-- **Framework**: FastAPI (Python)
-- **Database**: Firestore (via Firebase Admin SDK)
-- **Auth**: Firebase JWT Authentication
-- **Hosting**: Google Cloud Platform (GCP)
-- **Docs**: OpenAPI/Swagger (`/docs`)
-- **Containerization**: Docker (Planned)
-- **CI/CD**: GitHub Actions (Planned)
+| Layer            | Technology                     |
+|------------------|--------------------------------|
+| Backend API      | FastAPI (Python)               |
+| Database         | Google Firestore (Firebase)    |
+| Auth             | Firebase JWT + Role Guards     |
+| Deployment       | Google Cloud Platform (GCP)    |
+| API Docs         | Swagger UI (`/docs`)           |
+| Containerization | Docker (Planned)               |
+| CI/CD            | GitHub Actions (Planned)       |
 
 ---
 
@@ -47,27 +60,57 @@ This backend is built using **FastAPI**, providing a **scalable**, **secure**, a
 fitshot-backend/
 ├── app/
 │   ├── main.py              # FastAPI entrypoint
-│   ├── config.py            # Configuration and env loading
-│   ├── routes/              # API route definitions
-│   ├── schemas/             # Pydantic models for request/response
-│   ├── services/            # Business logic and Firestore queries
-│   ├── models/              # Enum and type models
-│   ├── utils/               # Auth, Firebase init, helper functions
-│   └── db/collections.py    # Firestore collection references
+│   ├── config.py            # Environment loader
+│   ├── routes/              # API endpoints by domain
+│   ├── schemas/             # Pydantic request/response models
+│   ├── services/            # Business logic and Firestore operations
+│   ├── utils/               # Firebase, auth, password hashing
+│   └── db/
+│       └── collections.py   # Firestore collection references
+├── secrets/
+│   └── firebase-credentials.json  # 🔒 Firebase service account
 ├── .env                     # Environment variables
 ├── requirements.txt         # Python dependencies
 └── README.md
-```
 
----
+## 🔐 Firebase & Security
+✅ Auth: Firebase JWT Authentication
+✅ Token Usage: Authorization: Bearer <token> required for protected routes
+✅ Password Security: SHA-256 hashed passwords (for org-level use)
+✅ Token Validation: Via Firebase Admin SDK
 
-## 📬 API Docs
+## Setup Instructions
 
-- Visit: [`http://localhost:8000/docs`](http://localhost:8000/docs)
-- Interactive Swagger UI for testing all endpoints
+## 1. Clone Repository
 
----
+git clone https://github.com/sunilganta-dev/fitshot-backend.git
+cd fitshot-backend
 
-## 📄 License
+## 2. Install Dependencies
 
-Chaya Development LLC © 2025 Fitshot Team
+pip install -r requirements.txt
+
+## 3. Add Firebase Credentials
+
+Save your Firebase Admin SDK private key as:
+
+app/secrets/firebase-credentials.json
+
+## 4. Create .env File
+
+FIREBASE_CREDENTIALS_PATH=app/secrets/firebase-credentials.json
+
+## 5. Run the Server
+
+uvicorn app.main:app --reload
+
+## 6. Access API Docs
+
+Open your browser and visit:
+
+http://localhost:8000/docs
+
+
+## 🪪 License
+© 2025 Chaya Development LLC – All rights reserved.
+Part of the Fitshot AI Fitness Ecosystem.
